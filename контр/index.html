@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить пользователя</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Добавить пользователя</h1>
+
+    <form id="userForm">
+        <input type="text" id="name" placeholder="Имя пользователя" required>
+        <input type="text" id="username" placeholder="Никнейм" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="company" placeholder="Название компании" required>
+
+        <button type="submit">Сохранить</button>
+    </form>
+
+    <p id="message"></p>
+
+    <button onclick="location.href='index.html'">Назад</button>
+
+    <script>
+        document.getElementById("userForm").onsubmit = function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let company = document.getElementById("company").value;
+
+            let user = {
+                name: name,
+                username: username,
+                email: email,
+                company: company
+            };
+
+            localStorage.setItem("user", JSON.stringify(user));
+
+            document.getElementById("message").textContent = "Пользователь сохранён!";
+            this.reset();
+        };
+    </script>
+</body>
+</html>
